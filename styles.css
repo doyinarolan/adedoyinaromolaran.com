@@ -70,6 +70,12 @@ p { margin: 0; }
 .nav a { text-decoration: none; color: var(--ink-2); padding: 6px 0; border-bottom: 2px solid transparent; transition: color .15s, border-color .15s; }
 .nav a:hover, .nav a.active { color: var(--ink); border-bottom-color: var(--accent); }
 
+.game-link {
+  display: grid; place-items: center; width: 34px; height: 34px; margin-right: -14px;
+  border: 1px solid var(--rule); border-radius: 999px; text-decoration: none;
+  font-size: 18px; line-height: 1; transition: border-color .15s ease, transform .15s ease;
+}
+.game-link:hover { border-color: var(--ink-2); transform: rotate(-8deg); }
 .mode {
   display: inline-flex; align-items: center; gap: 8px; padding: 6px 8px;
   background: none; border: 1px solid var(--rule); border-radius: 999px; cursor: pointer; color: var(--muted);
@@ -218,7 +224,7 @@ h3 { font-family: var(--serif); font-weight: 600; letter-spacing: -.01em; margin
 /* ---------- responsive ---------- */
 @media (max-width: 1000px) {
   .nav { display: none; }
-  .mode { margin-left: auto; }
+  .game-link { margin-left: auto; }
   .hero { grid-template-columns: 1fr; }
 }
 @media (max-width: 820px) {
