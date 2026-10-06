@@ -2,7 +2,7 @@
 
 Read this before changing anything in this folder. It covers the website only. For CVs, cover letters and job tracking, read `..\RULES.md` (the Resume project rules) instead.
 
-Last updated: 5 October 2026
+Last updated: 6 October 2026
 
 ---
 
@@ -31,6 +31,10 @@ assets/                          web-sized images used by the page:
   cert-bloomberg-esg.jpg
   cert-lseg-workspace.jpg
   cert-lseg-finance.jpg
+shapeswitchgame/                 Shape Switch minigame, live at /shapeswitchgame (added 6 Oct 2026)
+  index.html                       self-contained page (inline CSS + JS); shares the site's theme switch (localStorage "theme")
+  assets/*.png                     the user's 7 shapes: Circle, Triangle, Cross, Square, Star, Heart, Pentagon
+  Shape Switch Web Game Description.txt   the user's spec (kept local, NOT pushed to the repo)
 CNAME                            contains exactly: adedoyinaromolaran.com   (do not delete)
 .nojekyll                        empty; tells Pages to serve files as-is      (do not delete)
 README.md                        short repo readme
@@ -90,7 +94,7 @@ Full GitHub Pages steps written for the user: `..\GitHub Pages Instructions.txt`
 
 ## 7. GitHub Pages / domain setup
 
-Status at last update (5 Oct 2026): **this folder is NOT yet a git repository**, and Claude couldn't confirm from its session whether the GitHub repo exists or whether DNS is set. Ask the user before assuming.
+Status at last update (6 Oct 2026): the repo `doyinarolan/adedoyinaromolaran.com` exists and is live; DNS (4 A records + `www` CNAME at Namecheap) is set. This local folder is still NOT a git repository: Claude pushes from a cloud clone (attach with `add_repo`, push access works now that the Claude GitHub App is installed), then mirrors changes here. Folder names in the repo are **case-sensitive** on GitHub Pages (`shapeswitchgame`, lowercase). Unused original logos are deliberately not in the repo. Shape Switch spec: Classic = 4 shapes, build the new order, 5:00, +20s; Hard = 4–7 shapes, hide original order / key / new order / random, 6:00, +20s + 7s per shape over 4.
 
 Intended setup:
 - Repo: `doyinarolan/adedoyinaromolaran.com`, **public**, branch `main`, Pages source "Deploy from a branch → main → / (root)".
