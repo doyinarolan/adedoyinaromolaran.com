@@ -94,7 +94,7 @@ Full GitHub Pages steps written for the user: `..\GitHub Pages Instructions.txt`
 
 ## 7. GitHub Pages / domain setup
 
-Status at last update (6 Oct 2026): the repo `doyinarolan/adedoyinaromolaran.com` exists and is live; DNS (4 A records + `www` CNAME at Namecheap) is set. This local folder is still NOT a git repository: Claude pushes from a cloud clone (attach with `add_repo`, push access works now that the Claude GitHub App is installed), then mirrors changes here. Folder names in the repo are **case-sensitive** on GitHub Pages (`shapeswitchgame`, lowercase). Unused original logos are deliberately not in the repo. Shape Switch spec: Classic = 4 shapes, build the new order, 5:00, +20s; Hard = 4–7 shapes, hide original order / key / new order / random, 6:00, +20s + 7s per shape over 4.
+Status at last update (6 Oct 2026): the repo `doyinarolan/adedoyinaromolaran.com` exists and is live; DNS (4 A records + `www` CNAME at Namecheap) is set. This local folder is still NOT a git repository: Claude pushes from a cloud clone (attach with `add_repo`, push access works now that the Claude GitHub App is installed), then mirrors changes here. Folder names in the repo are **case-sensitive** on GitHub Pages (`shapeswitchgame`, lowercase). Unused original logos are deliberately not in the repo. Shape Switch spec: Classic = 4 shapes, build the new order, 5:00, +20s; Hard = 4–7 shapes, a random row (original order / key / new order) hidden each round with no option to choose (user decision 7 Oct), 6:00, +20s + 7s per shape over 4.
 
 Intended setup:
 - Repo: `doyinarolan/adedoyinaromolaran.com`, **public**, branch `main`, Pages source "Deploy from a branch → main → / (root)".
