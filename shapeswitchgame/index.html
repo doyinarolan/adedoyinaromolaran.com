@@ -240,15 +240,6 @@
               <button type="button" data-value="7">7</button>
             </div>
           </div>
-          <div class="setting">
-            <span class="setting-label" id="lbl-hide">Hidden row</span>
-            <div class="seg" role="group" aria-labelledby="lbl-hide" data-setting="hide">
-              <button type="button" data-value="answer">New order</button>
-              <button type="button" data-value="original">Original order</button>
-              <button type="button" data-value="key">Key</button>
-              <button type="button" data-value="random">Random each round</button>
-            </div>
-          </div>
         </div>
         <div class="facts" id="facts"></div>
         <div class="actions">
@@ -321,34 +312,27 @@
     SHAPES.forEach(function (s) { var i = new Image(); i.src = 'assets/' + s + '.png'; });
 
     var ROW_NAMES = { original: 'Original order', key: 'Key', answer: 'New order' };
-    var HIDE_NOTES = {
-      answer: 'You get the original order and the key. Arrange the new order.',
-      original: 'You get the key and the new order. Work backwards to the original order.',
-      key: 'You get the original order and the new order. Work out the key.',
-      random: 'A different row is hidden each round.'
-    };
     var TASKS = {
       answer: 'Use the key to arrange the <strong>new order</strong>.',
       original: 'Work backwards: arrange the <strong>original order</strong> that produces this new order.',
       key: 'Arrange the <strong>key</strong> that turns the original order into the new order.'
     };
 
-    var cfg = { mode: 'classic', n: 4, hide: 'answer' };
+    var cfg = { mode: 'classic', n: 4 };
     try {
       var saved = JSON.parse(localStorage.getItem('ssg-settings') || 'null');
       if (saved && (saved.mode === 'classic' || saved.mode === 'hard')) {
         cfg.mode = saved.mode;
         if ([4, 5, 6, 7].indexOf(+saved.n) > -1) cfg.n = +saved.n;
-        if (HIDE_NOTES[saved.hide]) cfg.hide = saved.hide;
       }
     } catch (e) {}
 
     function rules() {
       if (cfg.mode === 'classic') return { n: 4, hide: 'answer', start: 300, gain: 20, label: 'Classic' };
-      var hideLabel = cfg.hide === 'random' ? 'random row' : ROW_NAMES[cfg.hide].toLowerCase();
-      return { n: cfg.n, hide: cfg.hide, start: 360, gain: 20 + 7 * (cfg.n - 4), label: 'Hard · ' + cfg.n + ' shapes · ' + hideLabel };
+      // Hard mode always hides a random row each round (original order, key or new order).
+      return { n: cfg.n, hide: 'random', start: 360, gain: 20 + 7 * (cfg.n - 4), label: 'Hard · ' + cfg.n + ' shapes' };
     }
-    function bestKey() { return cfg.mode === 'classic' ? 'classic' : 'hard-' + cfg.n + '-' + cfg.hide; }
+    function bestKey() { return cfg.mode === 'classic' ? 'classic' : 'hard-' + cfg.n + '-random'; }
     function loadBests() { try { return JSON.parse(localStorage.getItem('ssg-best') || '{}') || {}; } catch (e) { return {}; } }
     function saveBest(k, v) { var b = loadBests(); b[k] = v; try { localStorage.setItem('ssg-best', JSON.stringify(b)); } catch (e) {} }
 
@@ -417,7 +401,8 @@
       });
       $('hard-settings').hidden = cfg.mode !== 'hard';
       var r = rules();
-      $('facts').innerHTML = '<span><b>' + r.n + '</b> shapes</span><span><b>' + fmt(r.start * 1000) + '</b> on the clock</span><span><b>+' + r.gain + 's</b> per correct answer</span>';
+      $('facts').innerHTML = '<span><b>' + r.n + '</b> shapes</span><span><b>' + fmt(r.start * 1000) + '</b> on the clock</span><span><b>+' + r.gain + 's</b> per correct answer</span>' +
+        (r.hide === 'random' ? '<span>A <b>random row</b> is hidden each round</span>' : '');
       var best = loadBests()[bestKey()];
       $('menu-best').textContent = best ? 'Your best with these settings: ' + best : '';
       try { localStorage.setItem('ssg-settings', JSON.stringify(cfg)); } catch (e) {}
