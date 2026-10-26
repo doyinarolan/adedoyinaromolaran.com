@@ -171,6 +171,23 @@ h3 { font-family: var(--serif); font-weight: 600; letter-spacing: -.01em; margin
 .bullets { margin: 0; padding-left: 20px; }
 .bullets li { margin-bottom: 8px; padding-left: 4px; }
 .bullets li::marker { color: var(--muted); }
+/* multi-role entry (Ocufolio): LinkedIn-style dot per role, joined by a line */
+.job-desc { color: var(--ink-2); margin: -4px 0 18px; }
+.roles { list-style: none; margin: 0; padding: 0; }
+.role-step { position: relative; padding-left: 28px; }
+.role-step + .role-step { margin-top: 16px; }
+.role-step::before {
+  content: ""; position: absolute; left: 3px; top: 7px; width: 11px; height: 11px;
+  border-radius: 50%; background: var(--muted);
+}
+.role-step:not(:last-child)::after {
+  content: ""; position: absolute; left: 7.5px; top: 24px; bottom: -17px; width: 2px;
+  border-radius: 1px; background: var(--muted); opacity: .45;
+}
+.role-top { display: flex; justify-content: space-between; gap: 20px; align-items: baseline; margin-bottom: 8px; }
+.role-step h4 { font-family: var(--serif); font-weight: 600; font-size: clamp(18px, 2vw, 20px); line-height: 1.25; letter-spacing: -.01em; margin: 0; }
+.role-top .when { font-weight: 500; color: var(--ink-2); }
+.role-step .bullets { list-style-type: disc; }
 
 /* education */
 .edu { display: grid; grid-template-columns: 120px 1fr; gap: 28px; padding: 24px 0; border-bottom: 1px solid var(--rule); }
@@ -251,6 +268,7 @@ h3 { font-family: var(--serif); font-weight: 600; letter-spacing: -.01em; margin
   .job-icon { width: 68px; height: 68px; }
   .job-icon svg { width: 28px; height: 28px; }
   .job-top { flex-direction: column; gap: 6px; }
+  .role-top { flex-direction: column; gap: 2px; }
   .when { text-align: left; }
   .edu { grid-template-columns: 1fr; gap: 6px; }
   .edu-year { font-size: 26px; }
